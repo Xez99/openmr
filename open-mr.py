@@ -218,16 +218,16 @@ def main():
             REMOVE_SOURCE_BRANCH
         )
         print(f'{GREEN}MR opened:{NC} {current_branch}')
-        print(f'{BLUE}mr_link{NC}')
+        print(f'{BLUE}{mr_link}{NC}')
     
     print('>>> Check if MR link in task is already exist...')
-    if not is_issue_link_already_exist(task, mr_link):
+    if is_issue_link_already_exist(task, mr_link):
+        print('MR link already added to task')
+    else:
         print('MR link not found')
         print('>>> Adding MR link to task...')
         add_jira_issue_link(task, mr_link)
         print(f'{GREEN}MR link added to task{NC}')
-    else:
-        print('MR link already added to task')
     
     print(f'{BLUE}https://{JIRA_HOST}/browse/{task}{NC}')
 
